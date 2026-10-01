@@ -1,0 +1,13 @@
+{
+  "info":{"name":"Shop Project Product API","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable":[{"key":"base_url","value":"http://127.0.0.1:8000"},{"key":"token","value":"YOUR_TOKEN"}],
+  "item":[
+    {"name":"GET Products","request":{"method":"GET","url":"{{base_url}}/api/products/"}},
+    {"name":"POST Product - Authenticated","request":{"method":"POST","header":[{"key":"Authorization","value":"Token {{token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Notebook\",\n  \"description\": \"A notebook with 100 pages.\",\n  \"price\": \"120.00\",\n  \"stock\": 25\n}"},"url":"{{base_url}}/api/products/"}},
+    {"name":"POST Without Token","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"Notebook\",\"description\":\"Test\",\"price\":\"120.00\",\"stock\":25}"},"url":"{{base_url}}/api/products/"}},
+    {"name":"Validation - Empty Name","request":{"method":"POST","header":[{"key":"Authorization","value":"Token {{token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"\",\"description\":\"Test\",\"price\":\"120.00\",\"stock\":25}"},"url":"{{base_url}}/api/products/"}},
+    {"name":"Validation - Zero Price","request":{"method":"POST","header":[{"key":"Authorization","value":"Token {{token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"Notebook\",\"description\":\"Test\",\"price\":\"0.00\",\"stock\":25}"},"url":"{{base_url}}/api/products/"}},
+    {"name":"Validation - Negative Stock","request":{"method":"POST","header":[{"key":"Authorization","value":"Token {{token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"Notebook\",\"description\":\"Test\",\"price\":\"120.00\",\"stock\":-5}"},"url":"{{base_url}}/api/products/"}},
+    {"name":"GET Page 2","request":{"method":"GET","url":"{{base_url}}/api/products/?page=2"}}
+  ]
+}
